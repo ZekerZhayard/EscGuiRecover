@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/ZekerZhayard/EscGuiRecover",
+    "promos": {
+        "1.8.9-latest": "2.0.0",
+        "1.8.9-recomended": "2.0.0"
+    },
+    "1.8.9": {
+        "2.0.0": "Add recovering title.",
+        "1.2.0": "Rewrite the mod.",
+        "1.1.0": "Remove recovering title.",
+        "1.0.0": "Create the mod."
+    }
+}
