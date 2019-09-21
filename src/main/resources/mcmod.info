@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "vanillarecover",
+    "name": "VanillaRecover",
+    "description": "Recover vanilla Minecraft gui.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "ZekerZhayard"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

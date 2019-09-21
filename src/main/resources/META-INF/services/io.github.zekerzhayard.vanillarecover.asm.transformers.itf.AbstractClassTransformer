@@ -1,0 +1,4 @@
+io.github.zekerzhayard.vanillarecover.asm.transformers.impl.DefaultResourcePackTransformer
+io.github.zekerzhayard.vanillarecover.asm.transformers.impl.FileResourcePackTransformer
+io.github.zekerzhayard.vanillarecover.asm.transformers.impl.FMLSanityCheckerTransformer
+io.github.zekerzhayard.vanillarecover.asm.transformers.impl.MainTransformer
