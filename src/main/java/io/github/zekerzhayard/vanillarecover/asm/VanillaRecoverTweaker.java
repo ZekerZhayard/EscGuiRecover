@@ -16,7 +16,9 @@ import org.apache.logging.log4j.Logger;
 
 public class VanillaRecoverTweaker implements ITweaker {
     public static String mcVersion;
+
     private final static Logger LOGGER = LogManager.getLogger();
+    private final static String TRANSFORMER = "io.github.zekerzhayard.vanillarecover.asm.transformers.ClassTransformer";
     private static Object deobfInstance;
     private static Method mapClassName;
     private static Method mapMethodName;
@@ -172,8 +174,7 @@ public class VanillaRecoverTweaker implements ITweaker {
             return;
         }
 
-        //Launch.classLoader.addTransformerExclusion("io.github.zekerzhayard.vanillarecover.asm.transformers.");
-        Launch.classLoader.registerTransformer("io.github.zekerzhayard.vanillarecover.asm.transformers.ClassTransformer");
+        Launch.classLoader.registerTransformer(TRANSFORMER);
     }
 
     @Override
@@ -186,12 +187,19 @@ public class VanillaRecoverTweaker implements ITweaker {
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
         try {
             List<IClassTransformer> transformers = (List<IClassTransformer>) FieldUtils.readDeclaredField(classLoader, "transformers", true);
+            IClassTransformer transformer = null;
             for (int i = transformers.size() - 1; i >=0; i--) {
-                IClassTransformer transformer = transformers.get(i);
-                if (transformer.getClass().getName().equals("io.github.zekerzhayard.vanillarecover.asm.transformers.ClassTransformer")) {
+                transformer = transformers.get(i);
+                if (transformer.getClass().getName().equals(TRANSFORMER)) {
                     transformers.remove(i);
-                    transformers.add(transformer);
+                    break;
                 }
+                transformer = null;
+            }
+            if (transformer == null) {
+                classLoader.registerTransformer(TRANSFORMER);
+            } else {
+                transformers.add(transformer);
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

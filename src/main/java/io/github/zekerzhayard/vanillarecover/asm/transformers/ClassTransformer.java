@@ -21,9 +21,9 @@ public class ClassTransformer implements IClassTransformer {
             if (act.isTargetClass(transformedName)) {
                 LOGGER.info(String.format("Found the class: %s -> %s", className, transformedName));
                 ClassNode cn = new ClassNode();
-                new ClassReader(basicClass).accept(cn, ClassReader.EXPAND_FRAMES);
+                new ClassReader(basicClass).accept(cn, ClassReader.SKIP_FRAMES);
                 act.transform(cn);
-                ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+                ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
                 cn.accept(cw);
                 return cw.toByteArray();
             }
